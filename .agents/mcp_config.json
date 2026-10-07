@@ -1,0 +1,35 @@
+{
+  "mcpServers": {
+    "Prisma": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.prisma.io/mcp"
+      ]
+    },
+    "angular-cli": {
+      "args": [
+        "-y",
+        "@angular/cli",
+        "mcp"
+      ],
+      "command": "npx"
+    },
+    "primeng": {
+      "args": [
+        "-y",
+        "@primeng/mcp"
+      ],
+      "command": "npx"
+    },
+    "PanelUI": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "panelui-cli@latest",
+        "mcp"
+      ]
+    }
+  }
+}
