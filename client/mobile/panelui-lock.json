@@ -1,0 +1,56 @@
+{
+  "version": 2,
+  "files": {
+    "components/ui/dialog.tsx": {
+      "item": "dialog",
+      "digest": "sha256:4c788e0b535ebc1c59cf892f51a5c8c7286aec2f06ee9e88ae3dc8b6f7e04679"
+    },
+    "lib/cn.ts": {
+      "item": "cn",
+      "digest": "sha256:9304a861c8673bee09e0f12de31773abbde503b02e59dfd74763ddec2e37cf05"
+    },
+    "components/ui/portal.tsx": {
+      "item": "portal",
+      "digest": "sha256:3f77c536fdc107ee1e2993f849b53440b051170378c9467d73b41f9ff6ec1614"
+    },
+    "components/ui/focus-restoration-store.ts": {
+      "item": "focus-restoration-store",
+      "digest": "sha256:cd47b2ec6b440f1073e831912037677aaca12330f33a8aea335d67a46980a7a9"
+    },
+    "components/ui/modal-isolation-store.ts": {
+      "item": "modal-isolation-store",
+      "digest": "sha256:346301f0da15175f23a8918834d0c6e9bbdb096e3c130fa92bc9640dc3500c70"
+    },
+    "components/ui/scrim.tsx": {
+      "item": "scrim",
+      "digest": "sha256:b8a5f68918ced359b54fa8897f752c6f18ad6a9f2e8e445c572d19f518986fb2"
+    },
+    "components/ui/text.tsx": {
+      "item": "text",
+      "digest": "sha256:7d2ac97b2f276c5ff03f524b21cde8616cfe9217a0a0c49d39eeba620bf462de"
+    },
+    "hooks/use-direction.ts": {
+      "item": "use-direction",
+      "digest": "sha256:9202d8550abaed8720af42d0320acf51e227fbf23f649b5636fd26475b849867"
+    },
+    "hooks/use-back-handler.ts": {
+      "item": "use-back-handler",
+      "digest": "sha256:7c45197c64beb13d8ab1f386758e07e2d83bdb6d02e5d83e27153afbdfa686e1"
+    }
+  },
+  "roots": {
+    "dialog": [
+      "dialog",
+      "cn",
+      "portal",
+      "focus-restoration-store",
+      "modal-isolation-store",
+      "scrim",
+      "text",
+      "use-direction",
+      "use-back-handler"
+    ]
+  },
+  "legacyFiles": [],
+  "registry": "https://panelui.dev/r"
+}
