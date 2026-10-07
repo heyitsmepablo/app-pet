@@ -5,9 +5,97 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "..api/generated/prisma"
+  output   = "../../api/generated/prisma"
 }
 
 datasource db {
   provider = "sqlite"
+}
+
+model Tutor {
+  id        String   @id @default(uuid())
+  cpf       String
+  name      String
+  email     String   @unique
+  phone     String
+  birthDate DateTime
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  pets Pet[]
+}
+
+model Pet {
+  id        String    @id @default(uuid())
+  tutorId   String
+  name      String
+  species   String
+  gender    Gender
+  breed     String?
+  weight    Float? // Crucial para dosagem de medicamentos e porção de ração
+  birthDate DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  tutor Tutor @relation(fields: [tutorId], references: [id], onDelete: Cascade)
+
+  foodStocks  FoodStock[]
+  vaccines    Vaccine[]
+  medications Medication[]
+}
+
+// Gerenciamento do ciclo da ração (Estoque e Consumo)
+model FoodStock {
+  id                 String   @id @default(uuid())
+  petId              String
+  brandName          String // Ex: Golden Seleção Natural
+  totalWeightGrams   Int // Peso total do pacote comprado
+  dailyPortionGrams  Int // Porção diária para calcular a previsão de esgotamento
+  purchaseDate       DateTime @default(now())
+  estimatedEmptyDate DateTime // Data calculada via back-end (totalWeight / dailyPortion)
+  isActive           Boolean  @default(true)
+  createdAt          DateTime @default(now())
+
+  pet Pet @relation(fields: [petId], references: [id], onDelete: Cascade)
+}
+
+// Carteira de vacinação e prazos
+model Vaccine {
+  id              String   @id @default(uuid())
+  petId           String
+  name            String // Ex: Múltipla (V8/V10), Antirrábica
+  applicationDate DateTime
+  nextDueDate     DateTime // Base para notificações push do app
+  veterinarian    String?
+  clinic          String?
+  createdAt       DateTime @default(now())
+
+  pet Pet @relation(fields: [petId], references: [id], onDelete: Cascade)
+}
+
+// Controle de parasitas e rotina médica recorrente
+model Medication {
+  id              String         @id @default(uuid())
+  petId           String
+  type            MedicationType
+  name            String // Ex: Comprimido antipulgas, Coleira antiparasitária, Shampoo medicamentoso
+  applicationDate DateTime
+  nextDueDate     DateTime // Alerta para troca de coleira ou nova dose
+  createdAt       DateTime       @default(now())
+
+  pet Pet @relation(fields: [petId], references: [id], onDelete: Cascade)
+}
+
+enum MedicationType {
+  FLEA_AND_TICK // Antipulgas e carrapatos
+  DEWORMER // Vermífugo
+  SUPPLEMENT // Vitaminas/Suplementos
+  OTHER
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }
